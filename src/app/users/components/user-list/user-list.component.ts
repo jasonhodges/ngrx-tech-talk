@@ -5,8 +5,8 @@ import { User } from '../../models/user.model';
   selector: 'ntt-user-list',
   template: `
     <ul>
-      <!--<li *ngFor="let user of users">{{user.firstName}}</li>-->
-      {{ users[0]?.firstName }}
+      <li *ngFor="let user of users">{{user?.firstName}}</li>
+      <!--{{ users[0]?.firstName }}-->
     </ul>
   `
 })

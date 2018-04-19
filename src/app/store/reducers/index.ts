@@ -3,11 +3,11 @@ import { environment } from '../../../environments/environment';
 import * as fromUsers from '../../users/store';
 
 export interface State {
-  users: fromUsers.UserState;
+  standard: fromUsers.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
-  users: fromUsers.reducer
+  standard: fromUsers.reducer
 };
 
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {

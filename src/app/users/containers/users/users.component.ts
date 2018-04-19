@@ -13,11 +13,12 @@ import * as fromStore from '../../store';
 export class UsersComponent implements OnInit {
   users$: Observable<User[]>;
 
-  constructor(private store: Store<fromStore.UserState>) {
-    this.users$ = this.store.pipe(select(fromStore.getAllUsers));
+  constructor(private store: Store<fromStore.State>) {
+    this.users$ = store.pipe(select(fromStore.getUsers));
   }
 
   ngOnInit() {
+    this.users$.subscribe(res => console.log(res));
   }
 
   onCreate(event: User) {
