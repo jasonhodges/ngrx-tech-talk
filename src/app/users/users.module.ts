@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
+import { NTTMaterialModule } from '../core/NTTMaterialModule';
 import { reducer } from './store';
 
 // components
@@ -14,7 +15,8 @@ import * as fromContainers from './containers';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('users', reducer)
+    StoreModule.forFeature('users', reducer),
+    NTTMaterialModule
   ],
   declarations: [...fromContainers.containers, ...fromComponents.components],
   exports: [...fromContainers.containers, ...fromComponents.components]

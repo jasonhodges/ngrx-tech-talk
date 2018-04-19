@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { User } from '../../models/user.model';
 
 export enum UserActionTypes {
   CreateUser = '[User] CreateUser',
@@ -9,7 +10,7 @@ export enum UserActionTypes {
 export class CreateUser implements Action {
   readonly type = UserActionTypes.CreateUser;
 
-  constructor(public payload: any) {
+  constructor(public payload: User) {
   }
 }
 

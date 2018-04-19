@@ -1,13 +1,8 @@
-import { IUser } from '../../../models/user.model';
+import { User } from '../../models/user.model';
 import { UserActions, UserActionTypes } from '../actions';
 
-export interface UserState {
-  users: IUser[];
-}
-
-export const initialState: UserState = {
-  users: []
-};
+export type UserState = User[];
+export const initialState: UserState = [];
 
 export function reducer(
   state = initialState,
@@ -15,15 +10,15 @@ export function reducer(
 ): UserState {
   switch (action.type) {
     case UserActionTypes.CreateUser:
-      return {
-        ...state, users: action.payload.user
-      };
+      return [...state, action.payload];
     case UserActionTypes.UpdateUser:
       return;
     case UserActionTypes.DeleteUser:
       return;
+    default: {
+      return state;
+    }
   }
-  return state;
 }
 
-export const getAllUsers = (state: UserState) => state.users;
+export const getAllUsers = (state: UserState) => state;

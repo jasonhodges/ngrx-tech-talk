@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IUser } from '../../../models/user.model';
+import { Address } from '../../models/address.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'ntt-user-form',
@@ -8,7 +9,7 @@ import { IUser } from '../../../models/user.model';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
-  @Output() create = new EventEmitter<IUser>();
+  @Output() create = new EventEmitter<User>();
   userForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -22,10 +23,7 @@ export class UserFormComponent implements OnInit {
     this.userForm = this.fb.group({
       firstName: '',
       lastName: '',
-      streetAddress: '',
-      cityAddress: '',
-      stateAddress: '',
-      zipcodeAddress: ''
+      address: this.fb.group(new Address())
     });
   }
 
@@ -33,6 +31,7 @@ export class UserFormComponent implements OnInit {
     const { value } = form;
     this.create.emit(value);
   }
+
   onSubmit() {
 
   }

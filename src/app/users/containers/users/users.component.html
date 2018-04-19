@@ -1,6 +1,7 @@
-<p>
-  users works!
-</p>
 <ntt-user-form
   (create)="onCreate($event)">
 </ntt-user-form>
+{{users$[0]?.firstName | async}}
+<ntt-user-list [users]="users$ | async">
+
+</ntt-user-list>

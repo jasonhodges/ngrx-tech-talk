@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { IUser } from '../../../models/user.model';
+import { User } from '../../models/user.model';
 
 import * as fromStore from '../../store';
 
@@ -11,16 +11,16 @@ import * as fromStore from '../../store';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  users$: Observable<IUser[]>;
+  users$: Observable<User[]>;
 
   constructor(private store: Store<fromStore.UserState>) {
+    this.users$ = this.store.pipe(select(fromStore.getAllUsers));
   }
 
   ngOnInit() {
-    // this.users$ = this.store.select(fromStore.);
   }
 
-  onCreate(event: IUser) {
+  onCreate(event: User) {
     this.store.dispatch(new fromStore.CreateUser(event));
   }
 }
