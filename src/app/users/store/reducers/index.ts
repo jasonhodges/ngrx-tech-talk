@@ -2,9 +2,6 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { User } from '../../models/user.model';
 import { UserActions, UserActionTypes } from '../actions';
 
-// export type UserState = User[];
-// export const initialState: UserState = [];
-
 export interface State {
   user: User[];
 }
@@ -19,10 +16,7 @@ export function reducer(
 ): State {
   switch (action.type) {
     case UserActionTypes.CreateUser:
-      return {
-        ...state,
-        user: [...state.user, action.payload]
-      };
+      return { user: [...state.user, action.payload] };
     case UserActionTypes.UpdateUser:
       return;
     case UserActionTypes.DeleteUser:
@@ -33,10 +27,16 @@ export function reducer(
   }
 }
 
-export const getAllUsers = (state: State) => state.user;
-
+/**
+ * Feature Selector for User State.
+ * @type {MemoizedSelector<object, State>}
+ */
 export const getUserState = createFeatureSelector<State>('users');
 
+/**
+ * Selector to get array of each 'user' object from state.
+ * @type {MemoizedSelector<object, User[]>}
+ */
 export const getUsers = createSelector(
   getUserState,
   (state: State) => state.user

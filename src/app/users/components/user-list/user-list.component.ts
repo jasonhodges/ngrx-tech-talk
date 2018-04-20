@@ -5,18 +5,16 @@ import { User } from '../../models/user.model';
   selector: 'ntt-user-list',
   template: `
     <ul>
-      <li *ngFor="let user of users">{{user?.firstName}}</li>
-      <!--{{ users[0]?.firstName }}-->
+      <li *ngFor="let user of users;let i = index;">
+        {{user?.user?.firstName}} {{user?.user?.lastName}}
+      </li>
     </ul>
   `
 })
 
-export class UserListComponent implements OnInit {
+export class UserListComponent {
   @Input() users: User[];
 
   constructor() {
-  }
-
-  ngOnInit() {
   }
 }

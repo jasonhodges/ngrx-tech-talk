@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { NTTMaterialModule } from '../core/NTTMaterialModule';
+import { UsersService } from './services/users.service';
 import { reducer } from './store';
 
 // components
@@ -19,7 +20,8 @@ import * as fromContainers from './containers';
     NTTMaterialModule
   ],
   declarations: [...fromContainers.containers, ...fromComponents.components],
-  exports: [...fromContainers.containers, ...fromComponents.components]
+  exports: [...fromContainers.containers, ...fromComponents.components],
+  providers: [UsersService]
 })
 
 export class UsersModule {

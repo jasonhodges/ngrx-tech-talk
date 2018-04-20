@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/user.model';
+import { UsersService } from '../../services/users.service';
 
 import * as fromStore from '../../store';
 
@@ -13,7 +14,10 @@ import * as fromStore from '../../store';
 export class UsersComponent implements OnInit {
   users$: Observable<User[]>;
 
-  constructor(private store: Store<fromStore.State>) {
+  constructor(
+    private store: Store<fromStore.State>,
+    private userService: UsersService
+  ) {
     this.users$ = store.pipe(select(fromStore.getUsers));
   }
 
@@ -22,6 +26,6 @@ export class UsersComponent implements OnInit {
   }
 
   onCreate(event: User) {
-    this.store.dispatch(new fromStore.CreateUser(event));
+    this.userService.addUser(event);
   }
 }

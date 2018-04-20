@@ -17,7 +17,7 @@ export class CreateUser implements Action {
 export class UpdateUser implements Action {
   readonly type = UserActionTypes.UpdateUser;
 
-  constructor(public payload: any) {
+  constructor(public payload: User | User[]) {
   }
 }
 
