@@ -1,10 +1,14 @@
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
+
 import { environment } from '../../../environments/environment';
+import { ConfigReducer, ConfigState } from '../../core/state/config';
 
 export interface State {
+  config: ConfigState.IState;
 }
 
 export const reducers: ActionReducerMap<State> = {
+  config: ConfigReducer.reducer,
 };
 
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
