@@ -7,20 +7,20 @@ import { NTTMaterialModule } from '../core/NTTMaterialModule';
 import * as fromComponents from './components';
 // containers
 import * as fromContainers from './containers';
-import { UsersService } from './services/users.service';
+import { EntityUsersService } from './services/entity-users.service';
 import { reducer } from './store';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('users', reducer),
+    StoreModule.forFeature('entityUsers', reducer),
     NTTMaterialModule
   ],
   declarations: [...fromContainers.containers, ...fromComponents.components],
   exports: [...fromContainers.containers, ...fromComponents.components],
-  providers: [UsersService]
+  providers: [EntityUsersService]
 })
 
-export class UsersModule {
+export class EntityUsersModule {
 }

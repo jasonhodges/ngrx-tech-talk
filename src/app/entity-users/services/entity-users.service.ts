@@ -6,23 +6,23 @@ import { Subscription } from 'rxjs/Subscription';
 import { User } from '../models/user.model';
 import * as fromStore from '../store';
 
-enum UserActions {
+enum EntityUserActions {
   'added' = 'CreateUser'
 }
 
 @Injectable()
-export class UsersService {
+export class EntityUsersService {
   userSub: Subscription;
   users$: Observable<any>;
   usersInState: any[];
   private usersCollection: AngularFirestoreCollection<User>;
 
   constructor(private store: Store<fromStore.State>, private afs: AngularFirestore) {
-    this.users$ = store.pipe(select(fromStore.getUsers));
+    this.users$ = store.pipe(select(fromStore.getSelectedUser));
     this.users$.subscribe(res => {
       this.usersInState = res;
     });
-    this.usersCollection = afs.collection<User>('users');
+    this.usersCollection = afs.collection<User>('entity-users');
     this.userSub = this.getUserDataStateChanges()
       .subscribe(actions => {
         actions.forEach(action =>
@@ -32,7 +32,7 @@ export class UsersService {
   }
 
   getUserDataStateChanges(): Observable<DocumentChangeAction[]> {
-    return this.afs.collection<User>('users').snapshotChanges(['added']);
+    return this.afs.collection<User>('entity-users').snapshotChanges(['added']);
   }
 
   addUser(user: User) {
@@ -42,12 +42,14 @@ export class UsersService {
   usersToState(action: any) {
     console.log(`usersToState action: ${action.payload.doc.id}`);
     let idExist;
-    idExist = this.usersInState.filter(e => e.id === action.payload.doc.id)[0];
+    idExist = this.usersInState
+      ? this.usersInState.filter(e => e.id === action.payload.doc.id)[0]
+      : undefined;
     if (idExist) {
       return;
     } else {
       return this.store.dispatch({
-        type: `[User] ${UserActions[action.type]}`,
+        type: `[EntityUser] ${EntityUserActions[action.type]}`,
         payload: {
           id: action.payload.doc.id,
           user: action.payload.doc.data()

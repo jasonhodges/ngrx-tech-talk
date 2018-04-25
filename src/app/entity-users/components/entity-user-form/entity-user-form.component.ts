@@ -4,11 +4,11 @@ import { Address } from '../../models/address.model';
 import { User } from '../../models/user.model';
 
 @Component({
-  selector: 'ntt-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  selector: 'ntt-entity-user-form',
+  templateUrl: './entity-user-form.component.html',
+  styleUrls: ['./entity-user-form.component.scss']
 })
-export class UserFormComponent {
+export class EntityUserFormComponent {
   @Output() create = new EventEmitter<User>();
   userForm: FormGroup;
 

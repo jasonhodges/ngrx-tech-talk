@@ -1,0 +1,4 @@
+<div class="users-container">
+  <ntt-entity-user-form (create)="onCreate($event)"></ntt-entity-user-form>
+  <ntt-entity-user-list [users]="users$ | async"></ntt-entity-user-list>
+</div>

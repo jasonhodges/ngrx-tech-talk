@@ -16,6 +16,9 @@ export function reducer(
 ): State {
   switch (action.type) {
     case UserActionTypes.CreateUser:
+      if (state.user.length === 10) {
+        state.user.shift();
+      }
       return { user: [...state.user, action.payload] };
     case UserActionTypes.UpdateUser:
       return;
@@ -39,5 +42,5 @@ export const getUserState = createFeatureSelector<State>('users');
  */
 export const getUsers = createSelector(
   getUserState,
-  (state: State) => state.user
+  (state: State) =>  state.user
 );

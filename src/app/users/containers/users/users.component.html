@@ -1,7 +1,5 @@
-<ntt-user-form
-  (create)="onCreate($event)">
-</ntt-user-form>
+<div class="users-container">
+  <ntt-user-form (create)="onCreate($event)"></ntt-user-form>
 
-<ntt-user-list [users]="users$ | async">
-
-</ntt-user-list>
+  <ntt-user-list [users]="users$ | async"></ntt-user-list>
+</div>
