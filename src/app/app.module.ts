@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,6 +13,8 @@ import { AppComponent } from './containers/app/app.component';
 import { NTTMaterialModule } from './core/NTTMaterialModule';
 import { EntityUsersComponent } from './entity-users/containers';
 import { EntityUsersModule } from './entity-users/entity-users.module';
+import { FormComponent } from './form/form.component';
+import { ConnectFormDirective } from './form/form.directive';
 import { metaReducers, reducers } from './store/reducers';
 import { UsersComponent } from './users/containers';
 import { UsersModule } from './users/users.module';
@@ -19,16 +22,21 @@ import { UsersModule } from './users/users.module';
 export const APP_ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/users' },
   { path: 'users', component: UsersComponent },
-  { path: 'entity-users', component: EntityUsersComponent }
+  { path: 'entity-users', component: EntityUsersComponent },
+  { path: 'form', component: FormComponent }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormComponent,
+    ConnectFormDirective
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     NTTMaterialModule,
     UsersModule,
     EntityUsersModule,
@@ -39,6 +47,7 @@ export const APP_ROUTES: Routes = [
     AngularFirestoreModule,
     AngularFireStorageModule
   ],
+  exports: [ConnectFormDirective],
   providers: [],
   bootstrap: [AppComponent]
 })

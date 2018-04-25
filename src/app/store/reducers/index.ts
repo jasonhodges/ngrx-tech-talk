@@ -1,20 +1,26 @@
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
-
-export interface State {
+import * as fromForm from '../../form/store';
+export interface AppState {
+  form: any;
 }
 
-export const reducers: ActionReducerMap<State> = {
+const initialState: AppState = {
+  form: undefined
 };
 
-export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
-  return function (state: State, action: any): State {
-    console.log('Initial State', state);
+export const reducers: ActionReducerMap<AppState> = {
+  form: fromForm.reducer
+};
+
+export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
+  return function (state: AppState, action: any): AppState {
+    console.log('Initial AppState', state);
     console.log('action', action);
     const newState = reducer(state, action);
-    console.log('Modified State', newState);
+    console.log('Modified AppState', newState);
     return reducer(state, action);
   };
 }
 
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [logger] : [];
+export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [logger] : [];

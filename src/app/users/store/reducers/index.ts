@@ -16,9 +16,9 @@ export function reducer(
 ): State {
   switch (action.type) {
     case UserActionTypes.CreateUser:
-      if (state.user.length === 10) {
-        state.user.shift();
-      }
+      // if (state.user.length === 10) {
+      //   state.user.shift();
+      // }
       return { user: [...state.user, action.payload] };
     case UserActionTypes.UpdateUser:
       return;
@@ -31,7 +31,7 @@ export function reducer(
 }
 
 /**
- * Feature Selector for User State.
+ * Feature Selector for User AppState.
  * @type {MemoizedSelector<object, State>}
  */
 export const getUserState = createFeatureSelector<State>('users');
