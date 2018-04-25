@@ -7,12 +7,12 @@ export interface State extends AppState {
 }
 
 export interface Form {
-  name: string;
+  firstName: string;
   shirtColor: string;
   shirtSize: string;
 }
 export const initialState: Form = {
-  name: '',
+  firstName: '',
   shirtColor: '',
   shirtSize: ''
 };

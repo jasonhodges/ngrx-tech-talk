@@ -1,16 +1,17 @@
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
+
 import { environment } from '../../../environments/environment';
+import { ConfigReducer, ConfigState } from '../../core/state/config';
 import * as fromForm from '../../form/store';
+
 export interface AppState {
   form: any;
+  config: ConfigState.IState;
 }
 
-const initialState: AppState = {
-  form: undefined
-};
-
 export const reducers: ActionReducerMap<AppState> = {
-  form: fromForm.reducer
+  form: fromForm.reducer,
+  config: ConfigReducer.reducer
 };
 
 export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
@@ -24,3 +25,4 @@ export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState
 }
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [logger] : [];
+

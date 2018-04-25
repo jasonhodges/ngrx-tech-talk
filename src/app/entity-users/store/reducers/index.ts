@@ -12,7 +12,6 @@ export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
   selectId: (user: User) => user.id
 });
 
-
 export const initialState: State = adapter.getInitialState({
   entities: {},
   selectedUserId: null
@@ -24,7 +23,6 @@ export function reducer(
 ): State {
   switch (action.type) {
     case EntityUserActionTypes.CreateUser: {
-      // return adapter.addOne(action.payload.user, state)
       return adapter.addOne(action.payload, {
         ...state,
         selectedUserId: state.selectedUserId
@@ -39,19 +37,11 @@ export function reducer(
 export const getSelectedUser = (state: State) => state.selectedUserId;
 
 export const {
-  // select the array of user ids
-  // selectIds: selectUserIds,
-
-  // select the dictionary of user entities
-  // selectEntities: selectUserEntities,
-
   // select the array of users
-  selectAll: selectAllUsers,
-
-  // select the total user count
-  // selectTotal: selectUserTotal
+  selectAll: selectAllUsers
 } = adapter.getSelectors();
 
 export const selectUserState = createFeatureSelector<State>('entityUsers');
 
 export const selectUsers = createSelector(selectUserState, selectAllUsers);
+

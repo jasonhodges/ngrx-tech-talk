@@ -27,5 +27,6 @@ export class EntityUserFormComponent {
   createUser(form: FormGroup) {
     const { value } = form;
     this.create.emit(value);
+    this.userForm.reset();
   }
 }

@@ -1,0 +1,17 @@
+:host {
+  form {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    > * {
+      width: 100%;
+    }
+    > .form-group {
+      > * {
+        width: 100%;
+      }
+    }
+  }
+}

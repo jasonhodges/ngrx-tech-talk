@@ -1,3 +1,65 @@
-<p>
-  form works!
-</p>
+<form #ngForm="ngForm"
+      (ngSubmit)="onSubmit()">
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+ <mat-form-field>
+   <input matInput
+          placeholder="Name"
+          type="text"
+          name="firstName"
+          [ngModel]="(form$ | async).firstName">
+ </mat-form-field>
+ <mat-form-field>
+   <mat-select placeholder="Shirt Color"
+           name="shirtColor"
+           id="shirtColor"
+           [ngModel]="(form$ | async).shirtColor">
+     <mat-option value="blue">BLUE</mat-option>
+     <mat-option value="green">GREEN</mat-option>
+     <mat-option value="magenta">MAGENTA</mat-option>
+   </mat-select>
+ </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Shirt Size"
+            name="shirtSize"
+            id="shirtSize"
+            [ngModel]="(form$ | async).shirtSize">
+      <mat-option value="xs">Extra Small</mat-option>
+      <mat-option value="s">Small</mat-option>
+      <mat-option value="m">Medium</mat-option>
+      <mat-option value="l">Large</mat-option>
+      <mat-option value="xl">Extra Large</mat-option>
+      <mat-option value="xxl">2XL</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<form (ngSubmit)="onSubmit()">
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+  <mat-form-field>
+    <input matInput
+           placeholder="Name"
+           type="text"
+           name="name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Shirt Color"
+                name="shirtColor"
+                id="shirtColor_np">
+      <mat-option value="blue">BLUE</mat-option>
+      <mat-option value="green">GREEN</mat-option>
+      <mat-option value="magenta">MAGENTA</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Shirt Size"
+                name="shirtSize"
+                id="shirtSize_np">
+      <mat-option value="xs">Extra Small</mat-option>
+      <mat-option value="s">Small</mat-option>
+      <mat-option value="m">Medium</mat-option>
+      <mat-option value="l">Large</mat-option>
+      <mat-option value="xl">Extra Large</mat-option>
+      <mat-option value="xxl">2Xl</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

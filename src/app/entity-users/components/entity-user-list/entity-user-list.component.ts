@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'ntt-entity-user-list',
   template: `
     <ul>
-      <li *ngFor="let u of users; let i = index;">
+      <li *ngFor="let u of users;">
         {{u.user?.firstName}} {{u.user?.lastName}}
       </li>
     </ul>

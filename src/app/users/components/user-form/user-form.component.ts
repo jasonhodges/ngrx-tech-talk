@@ -27,5 +27,6 @@ export class UserFormComponent {
   createUser(form: FormGroup) {
     const { value } = form;
     this.create.emit(value);
+    this.userForm.reset();
   }
 }
